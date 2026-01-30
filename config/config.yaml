@@ -1,0 +1,33 @@
+# MCP M365 Server Configuration
+
+server:
+  name: "mcp-m365"
+  version: "1.0.0"
+  port: 8080
+
+microsoft365:
+  # Scopes required for Microsoft Graph API
+  scopes:
+    - "https://graph.microsoft.com/.default"
+  
+  # API endpoints
+  graph_api_version: "v1.0"
+  graph_base_url: "https://graph.microsoft.com/v1.0"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "/app/logs/mcp_server.log"
+
+# Rate limiting (requests per minute)
+rate_limits:
+  emails: 60
+  calendar: 60
+  teams: 30
+  profile: 30
+
+# Cache settings (in seconds)
+cache:
+  user_profile: 3600  # 1 hour
+  teams_list: 1800    # 30 minutes
+  calendar_events: 300  # 5 minutes
